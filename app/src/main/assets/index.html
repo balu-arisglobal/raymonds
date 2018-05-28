@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script><script type="text/javascript">
+function onCheck(){
+var key = document.getElementById("configKey").value;
+var shopID=document.getElementById("shopID").value;
+var trimmedID=shopID.replace("SHOP-","").trim();
+if (key == ""){
+document.getElementById("configKey").style.borderColor="red";
+}
+else if(shopID == "") {
+document.getElementById("shopID").style.borderColor="red";
+}
+else{
+window.cpjs.sendToAndroid(key,trimmedID);
+}
+}
+
+function onLoadFunc(){
+
+}
+
+function funcSetDefualtBorderForText(){
+document.getElementById("configKey").style.borderColor = "#a09da5";
+}
+
+function funcSetDefualtBorderForSelector(){
+document.getElementById("shopID").style.borderColor = "#a09da5";
+}
+</script>
+
+
+<style>
+    input[type=text] {
+    width: 100%;
+    padding: 8px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    }
+    .Textbox {
+    width: 526px;
+    margin-right: -4px;
+    }
+
+    input[type=submit] {
+    width: 100%;
+    background-color: #4C4646;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    }
+
+    input[type=submit]:hover {
+    background-color: #5C5858;
+    }
+
+</style>
+<body onload="onLoadFunc()" id="bootstrap-overrides">
+<br> <br>
+<div>
+    <form action="javascript:onCheck()">
+        <center>
+            <img src="file:///android_asset/configpagelogo.png" alt="The Complete Man" height="200" width="200">
+        </center>
+
+        <br> <br> <br> <br>
+        <input type="text" class="TextBox" placeholder= "Please Enter Config Key" id= "configKey" onkeydown="funcSetDefualtBorderForText(configKey)"/>
+        <select class="form-control" id="shopID" onchange="funcSetDefualtBorderForSelector(shopID)">
+            <option value="">--Select a Shop--</option>
+            <option value="SHOP-1">SHOP-1</option>
+            <option value="SHOP-2">SHOP-2</option>
+            <option value="SHOP-3">SHOP-3</option>
+        </select>
+
+        <input type="submit" value="Submit" id="Go">
+    </form>
+</div>
+
+</body>
+</html>
